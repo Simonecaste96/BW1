@@ -5,6 +5,7 @@ body {
     padding: 0;
     color: white;
     font-family: "Inter", sans-serif;
+    line-height: 1.5em;
 }
 
 .background {
@@ -30,4 +31,68 @@ h6 {
 
 .container {
     padding: 7vh 7vw;
+}
+
+label{
+    margin-left: 10px;
+}
+
+.h1{
+    font-size: 6em;
+    font-weight: normal;
+    line-height: 0.8em;
+    margin-top: 100px;
+}
+.h2, .avviso, .fa-square-check {
+    color: #d20094;
+}
+.h2 {
+    font-size: 2em;
+    margin-bottom: 0;
+}
+
+.container_main p {
+    margin-bottom: 50px;
+}
+.container_main ul {
+    padding-inline-start: 30px;
+}
+
+.container_main {
+    max-width: 617px;
+    min-width: 450px;
+}
+.contenitoreBtn{
+margin-top:30px;
+}
+
+.button{
+width: 200px;
+height: 50px;
+border: solid 0;
+padding: 0;
+/* color: black; */
+font-size: large;
+/* background-color: #00FFFF;    */
+background-color: lightgray;
+color: white;
+margin-left: 9.5vw;
+/* cursor: pointer; */
+}
+.abilitato {
+    cursor: pointer;
+    background-color: #00FFFF;
+    color: black;
+}
+
+.contenitoreBtn i {
+    cursor: pointer;
+}
+
+.contenitoreBtn .abilitato:hover {
+ box-shadow: 1px 1px 15px #00ffff52, 1px -1px 15px #00ffff52, -1px 1px 15px #00ffff52, -1px -1px 15px #00ffff52;
+}
+
+.fa-square-check, .fa-square {
+    font-size: 1.1em;
 }
