@@ -125,14 +125,14 @@ let arrayRisposte = []
 // }
 
 
-// LET COUNT FUNZIONA DA CONTATORE, CHE EQUIVALE ALLA PRIMA DOMANDA
+// LET COUNT FUNZIONA DA CONTATORE, CHE EQUIVALE ALLA PRIMA DOMANDA -3-
 let count = 1;
 
-//SI CREA UNA FUNZIONE, LA QUALE PRENDE L'ID nell'html numeroDomanda, per poi aggiornarlo in base alla quantità delle domande effettuate.
+//SI CREA UNA FUNZIONE, LA QUALE PRENDE L'ID nell'html numeroDomanda, per poi aggiornarlo in base alla quantità delle domande effettuate. -4-
 const numeroDomanda = () => {
   document.getElementById('numeroDomanda').innerText = count;
 }
-//Randomizzazone delle risposte in modo che non escano in ordine come nell'array (cioè la prima corretta e le seguenti false)
+//Randomizzazone delle risposte in modo che non escano in ordine come nell'array (cioè la prima corretta e le seguenti false) -5-
 const randomizzaRisposte = (array) => {
     let arrayRisposte = [];
     array.forEach(element => {
@@ -145,7 +145,7 @@ const randomizzaRisposte = (array) => {
     return arrayRisposte
 }
 
-// Prendiamo le domande ed andiamo ad inserirle dentro al div questions
+// Prendiamo le domande ed andiamo ad inserirle dentro al div questions   -7-
 const strutturaDomanda = (indice) => {
     const domande = document.getElementById("questions")
     let risposte = []
@@ -180,7 +180,7 @@ const strutturaDomanda = (indice) => {
     domande.append(...risposteCasuali)
 }
 
-//Con il metodo math random andiamo a creare un numero randomico (tra 0 e 0.9999999) che verrà moltiplicato con la lunghezza dell'array questions in modo da ottenere un indice randomico
+//Con il metodo math random andiamo a creare un numero randomico (tra 0 e 0.9999999) che verrà arrotondato da math floor e moltiplicato con la lunghezza dell'array questions in modo da ottenere un indice randomico  -6-
 const pescaDomanda = () => {
   const random = Math.floor(Math.random() * questions.length);
   //SE L'INDICE RANDOM è PRESENTE NELL'ARRAY, RIPESCA. ALTRIMENTI DICHIARA L'INDICE DELL'ARRAY RISPOSTE CON IL VALORE STRINGA: FALSE
@@ -191,11 +191,11 @@ const pescaDomanda = () => {
     strutturaDomanda(random)
   }
 }
-// 
+
 const init = () => {
-    document.getElementById("totaleDomande").innerText = questions.length;
+    document.getElementById("totaleDomande").innerText = questions.length; // -2- La funzione init prende nel documento l'elemento con l'id totaleDomande e dagli come valore la lunghezza delle domande, dopo di che invoca le funzioni numeroDomanda e pescaDomanda
     numeroDomanda();
   pescaDomanda();
 };
 
-window.addEventListener("load", init);
+window.addEventListener("load", init); //-1- Attendiamo il caricamento della pagina ed avviamo la funzione init

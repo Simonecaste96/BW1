@@ -1,15 +1,15 @@
 
 
 
-//Prendiamo gli elementi dell'HTML che ci servono nel JS
+//Prendiamo gli elementi dell'HTML che ci servono nel JS  -3-
 
 const gestioneCheckbox = () => {
-    const unchecked = document.getElementById("unchecked");
+    const unchecked = document.getElementById("unchecked");  
     const checked = document.getElementById("checked");
     const button = document.getElementById("button");
     const avviso = document.querySelector(".avviso");
     
-    //Selezionando la checkbox vuota la sostituiamo con la checkbox gia spuntata, abilitiamo il bottone e nascondiamo l'avviso(Devi accettare per procedere con il quiz)
+    //Selezionando la checkbox vuota la sostituiamo con la checkbox gia spuntata, abilitiamo il bottone e nascondiamo l'avviso(Devi accettare per procedere con il quiz) -4-
     unchecked.addEventListener("click", (e) => {
         unchecked.style.display = "none";
         checked.style.display = "inline";
@@ -17,7 +17,7 @@ const gestioneCheckbox = () => {
         avviso.style.display = "none";
     });
 
-    //Selezionando la checkbox spuntata la sostiutiamo con la checkbox vuota, disabilitiamo il bottone e facciamo comparire l'avviso.
+    //Selezionando la checkbox spuntata la sostiutiamo con la checkbox vuota, disabilitiamo il bottone e facciamo comparire l'avviso.  -5-
     checked.addEventListener("click", (e) => {
         unchecked.style.display = "inline";
         checked.style.display = "none";
@@ -25,7 +25,7 @@ const gestioneCheckbox = () => {
         avviso.style.display = "block";
     });
 
-    //Se è stata spuntata la checkbox il bottone diventa utilizzabile e porta alla pagina seguente, altrimenti non fa nulla
+    //Se è stata spuntata la checkbox il bottone diventa utilizzabile e porta alla pagina seguente, altrimenti non fa nulla   -6-
     button.addEventListener("click", (e) => {
         e.preventDefault();
         if (button.classList.contains("abilitato")) {
@@ -34,10 +34,10 @@ const gestioneCheckbox = () => {
     })
 };
 
-// La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox
+// La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox  -2-
 const init = () => {
     gestioneCheckbox();
 };
 
-// Quando carica la pagina, esegue la funzione callback init
+// Quando carica la pagina, esegue la funzione callback init  -1-
 window.addEventListener("load", init);
