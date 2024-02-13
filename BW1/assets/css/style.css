@@ -1,3 +1,4 @@
+/* IMPOSTAZIONE DELLA PAGINA */
 html,
 body {
     box-sizing: border-box;
@@ -39,6 +40,8 @@ h6 {
     padding: 7vh 7vw;
 }
 
+/* Pagina Iniziale */
+
 label {
     margin-left: 10px;
 }
@@ -51,7 +54,7 @@ label {
 }
 .h2,
 .avviso,
-.fa-square-check {
+.fa-square-check, .domande_totali {
     color: #d20094;
 }
 .h2 {
@@ -84,7 +87,7 @@ label {
     color: white;
     margin-left: 9.5vw;
 }
-.abilitato {
+.abilitato, .buttonProssima {
     cursor: pointer;
     background-color: #00ffff;
     color: black;
@@ -94,7 +97,7 @@ label {
     cursor: pointer;
 }
 
-.contenitoreBtn .abilitato:hover {
+.contenitoreBtn .abilitato:hover, .buttonProssima:hover {
     box-shadow: 1px 1px 15px #00ffff52, 1px -1px 15px #00ffff52,
         -1px 1px 15px #00ffff52, -1px -1px 15px #00ffff52;
 }
@@ -102,4 +105,135 @@ label {
 .fa-square-check,
 .fa-square {
     font-size: 1.1em;
+}
+
+/* ***Pagina Domande*** */
+/* COUNTDOWN */
+.testo_countdown,
+.testo_countdown2 {
+  position: absolute;
+  font-size: 0.5em;
+  color: white;
+}
+
+.testo_countdown {
+  top: 23px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.testo_countdown2{
+  bottom: 23px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#countdown {
+  position: relative;
+  margin: 40px 30px auto auto;
+  height: 100px; /* altezza adeguata per contenere il cerchio più grande */
+  width: 100px; /* larghezza adeguata per contenere il cerchio più grande */
+  text-align: right;
+  zoom: 1.6;
+}
+
+#countdown-number {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px; /* dimensione del testo */
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%; /* larghezza adeguata per contenere il cerchio più grande */
+  height: 100%; /* altezza adeguata per contenere il cerchio più grande */
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+svg .cerchio {
+  stroke-dasharray: 283px; /* circonferenza del cerchio */
+  stroke-dashoffset: 0px;
+  stroke-width: 10px; /* spessore del bordo */
+  stroke-linecap: round;
+  stroke: #d20094;
+  fill: none;
+  animation: countdown 10s linear forwards;
+}
+
+svg .cerchio2{
+  stroke-dasharray: 283px; /* circonferenza del cerchio */
+  stroke-dashoffset: 0px;
+  stroke-width: 10px; /* spessore del bordo */
+  stroke: gray;
+  fill: none;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 283px; /* circonferenza del cerchio */
+  }
+}
+
+/* STRUTTURA */
+
+.buttonRisposta{
+    border-radius: 25px;
+    width:45%;
+    height: 50px;
+    margin-right: 4%;
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: 2px solid white;
+    border-left: 0.2px solid white;
+    border-right: 0.2px solid white;
+    border-bottom: 0;
+    color: white;
+    cursor: pointer;
+    vertical-align: middle;
+    font-weight: 800;
+}
+
+.buttonRisposta:hover {
+    border: 0;
+    
+
+}
+
+.h2_domanda {
+    line-height: 2.0em;
+}
+
+.domanda {
+    font-weight: 500;
+}
+
+.buttonProssima{
+width:200px;
+height: 50px;
+font-weight: bold;
+position: absolute;
+top: 0;
+right: 0;
+border: solid 0;
+cursor: pointer;
+background-color: #00ffff;
+}
+
+.numero_domande {
+    display: inline-block;
+    width: max-content;
+}
+
+.contenitoreProsegui{
+    vertical-align: middle;
+    position: relative;
+    margin-top: 50px;
 }
