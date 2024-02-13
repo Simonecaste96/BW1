@@ -26,8 +26,8 @@
     type: "boolean",
     difficulty: "easy",
     question: "Il logo di Snapchat è una campana.",
-    correct_answer: "False",
-    incorrect_answers: ["True"],
+    correct_answer: "Falso",
+    incorrect_answers: ["Vero"],
   },
   {
     category: "Science: Computers",
@@ -35,8 +35,8 @@
     difficulty: "easy",
     question:
       "I puntatori non venivano utilizzati nel linguaggio di programmazione C originale; sono stati aggiunti successivamente in C++.",
-    correct_answer: "False",
-    incorrect_answers: ["True"],
+    correct_answer: "Falso",
+    incorrect_answers: ["Vero"],
   },
   {
     category: "Science: Computers",
@@ -85,8 +85,8 @@
     type: "boolean",
     difficulty: "easy",
     question: "Linux è stato creato come alternativa a Windows XP.",
-    correct_answer: "False",
-    incorrect_answers: ["True"],
+    correct_answer: "Falso",
+    incorrect_answers: ["Vero"],
   },
   {
     category: "Science: Computers",
@@ -132,12 +132,11 @@ let count = 1;
 const numeroDomanda = () => {
   document.getElementById('numeroDomanda').innerText = count;
 }
-
+//Randomizzazone delle risposte in modo che non escano in ordine come nell'array (cioè la prima corretta e le seguenti false)
 const randomizzaRisposte = (array) => {
     let arrayRisposte = [];
     array.forEach(element => {
         let random = Math.floor(Math.random() * array.length)
-        console.log(random)
         while (arrayRisposte.includes(array[random])) {
           random = Math.floor(Math.random() * array.length)
         }
