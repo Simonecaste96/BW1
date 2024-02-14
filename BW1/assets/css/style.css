@@ -252,7 +252,8 @@ background-color: #00ffff;
     cursor: pointer;
     background-color:transparent;  
     color: white;
-    box-shadow: 1px 1px 10px #0044ff52;  
+    box-shadow: 1px 1px 10px #0044ff52; 
+    margin-top: 5%; 
 }
 .contenitoreRisultati{
     text-align: center;
@@ -281,7 +282,7 @@ background-color: #00ffff;
     font-size: 0.8em;
 }
 
-.contenitoreCiambella div {
+.contenitoreCiambella > div {
     width: fit-content;
     display: inline-block;
     vertical-align: middle;
