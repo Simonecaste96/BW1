@@ -4,11 +4,11 @@
 //Prendiamo gli elementi dell'HTML che ci servono nel JS  -3-
 
 const gestioneCheckbox = () => {
-    const unchecked = document.getElementById("unchecked");   
+    const unchecked = document.getElementById("unchecked");
     const checked = document.getElementById("checked");
     const button = document.getElementById("button");
-    const avviso = document.querySelector(".avviso");   
-    
+    const avviso = document.querySelector(".avviso");
+
     //Selezionando la checkbox vuota la sostituiamo con la checkbox gia spuntata, abilitiamo il bottone e nascondiamo l'avviso(Devi accettare per procedere con il quiz) -4-
     unchecked.addEventListener("click", () => {
         unchecked.style.display = "none";

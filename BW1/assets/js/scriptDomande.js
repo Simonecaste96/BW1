@@ -147,9 +147,9 @@ const randomizzaRisposte = (array) => {
 
 const rimuoviSelezionata = () => {
   const selezionata = document.querySelector('.selezionata');
-    if (selezionata) {
-      selezionata.classList.remove('selezionata')
-    }
+  if (selezionata) {
+    selezionata.classList.remove('selezionata')
+  }
 }
 
 // Prendiamo le domande ed andiamo ad inserirle dentro al div questions   -7-
@@ -200,22 +200,22 @@ const strutturaDomanda = (indice) => {
 let intervallo;
 
 const parteCountdown = () => {
-    let timer = 30;
-    const numero = document.getElementById('countdown-number');
-    numero.innerText = timer;
-    const cerchio = document.querySelector('svg .cerchio')
-    cerchio.setAttribute('style', '')
-    setTimeout(() => {
-      cerchio.style.animation = `countdown ${timer}s linear forwards`;
-    }, 50)
-    intervallo = setInterval(() => {
-      timer--                                                       // timer = timer - 1 || timer -= 1;
-      numero.innerText = timer
-      if (timer === 0) {
-        clearInterval(intervallo)
-        controlloRisposta()
-      }
-    }, 1000)
+  let timer = 30;
+  const numero = document.getElementById('countdown-number');
+  numero.innerText = timer;
+  const cerchio = document.querySelector('svg .cerchio')
+  cerchio.setAttribute('style', '')
+  setTimeout(() => {
+    cerchio.style.animation = `countdown ${timer}s linear forwards`;
+  }, 50)
+  intervallo = setInterval(() => {
+    timer--                                                       // timer = timer - 1 || timer -= 1;
+    numero.innerText = timer
+    if (timer === 0) {
+      clearInterval(intervallo)
+      controlloRisposta()
+    }
+  }, 1000)
 }
 
 let domandaAttuale = 0;

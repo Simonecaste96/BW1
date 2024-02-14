@@ -256,4 +256,34 @@ background-color: #00ffff;
 }
 .contenitoreRisultati{
     text-align: center;
+      
+}
+
+.ciambella {
+    margin: 0 auto;
+    width: fit-content;
+    position: relative;
+}
+
+.testo_ciambella {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+.testo_ciambella p {
+    font-size: 0.8em;
+}
+
+.testo_ciambella span {
+    font-size: 0.8em;
+}
+
+.contenitoreCiambella div {
+    width: fit-content;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
 }
