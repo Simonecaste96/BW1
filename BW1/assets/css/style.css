@@ -241,3 +241,19 @@ background-color: #00ffff;
 .selezionata {
     background-color: #d20094;
 }
+
+.buttonFeedback{
+    width:200px;
+    height: 50px;
+    font-weight: bold;
+    top: 0;
+    right: 0;
+    border: solid 2px white;
+    cursor: pointer;
+    background-color:transparent;  
+    color: white;
+    box-shadow: 1px 1px 10px #0044ff52;  
+}
+.contenitoreRisultati{
+    text-align: center;
+}

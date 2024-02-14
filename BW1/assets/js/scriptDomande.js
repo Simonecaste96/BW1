@@ -197,13 +197,19 @@ const strutturaDomanda = (indice) => {
   domande.append(...risposteCasuali)
 }
 
+let intervallo;
+
 const parteCountdown = () => {
     let timer = 30;
     const numero = document.getElementById('countdown-number');
     numero.innerText = timer;
-    document.querySelector('svg .cerchio').style.animation = `countdown ${timer}s linear forwards`;
-    let intervallo = setInterval(() => {
-      timer--                                      // timer = timer - 1 || timer -= 1;
+    const cerchio = document.querySelector('svg .cerchio')
+    cerchio.setAttribute('style', '')
+    setTimeout(() => {
+      cerchio.style.animation = `countdown ${timer}s linear forwards`;
+    }, 50)
+    intervallo = setInterval(() => {
+      timer--                                                       // timer = timer - 1 || timer -= 1;
       numero.innerText = timer
       if (timer === 0) {
         clearInterval(intervallo)
@@ -229,6 +235,10 @@ const pescaDomanda = () => {
   }
 }
 
+let oggetto = {
+  risultati: ""
+}
+
 function controlloRisposta() {
   const selezionata = document.querySelector('.selezionata')
   if (selezionata && selezionata.id.includes("buttonRisposta1")) {
@@ -239,14 +249,32 @@ function controlloRisposta() {
     numeroDomanda();
     pescaDomanda();
   } else {
-    // DA FARE DOPO
+    const risposteCorrette = arrayRisposte.filter((valore) => valore === "true")
+    const countCorrette = risposteCorrette.length;
+    const countSbagliate = arrayRisposte.length - countCorrette;
+    sessionStorage.setItem("risultati", JSON.stringify({
+      corrette: countCorrette,
+      sbagliate: countSbagliate,
+      totale: arrayRisposte.length
+    }))
+    window.location.href = "indexRisultati.html";
   }
+}
+
+const inizializaBottone = () => {
+  const bottone = document.getElementById('buttonProssima')
+  bottone.addEventListener("click", (e) => {
+    e.preventDefault();
+    clearInterval(intervallo)
+    controlloRisposta();
+  })
 }
 
 const init = () => {
   document.getElementById("totaleDomande").innerText = questions.length; // -1- La funzione init prende nel documento l'elemento con l'id totaleDomande e dagli come valore la lunghezza delle domande, dopo di che invoca le funzioni numeroDomanda e pescaDomanda
   numeroDomanda();
   pescaDomanda();
+  inizializaBottone();
 };
 
 window.addEventListener("load", init); //-1- Attendiamo il caricamento della pagina ed avviamo la funzione init
