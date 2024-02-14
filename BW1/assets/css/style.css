@@ -162,7 +162,7 @@ svg .cerchio {
   stroke-linecap: round;
   stroke: #d20094;
   fill: none;
-  animation: countdown 10s linear forwards;
+  /* animation: countdown 10s linear forwards; */
 }
 
 svg .cerchio2{
@@ -236,4 +236,8 @@ background-color: #00ffff;
     vertical-align: middle;
     position: relative;
     margin-top: 50px;
+}
+
+.selezionata {
+    background-color: #d20094;
 }

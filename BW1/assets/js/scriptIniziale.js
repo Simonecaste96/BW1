@@ -4,13 +4,13 @@
 //Prendiamo gli elementi dell'HTML che ci servono nel JS  -3-
 
 const gestioneCheckbox = () => {
-    const unchecked = document.getElementById("unchecked");  
+    const unchecked = document.getElementById("unchecked");   
     const checked = document.getElementById("checked");
     const button = document.getElementById("button");
-    const avviso = document.querySelector(".avviso");
+    const avviso = document.querySelector(".avviso");   
     
     //Selezionando la checkbox vuota la sostituiamo con la checkbox gia spuntata, abilitiamo il bottone e nascondiamo l'avviso(Devi accettare per procedere con il quiz) -4-
-    unchecked.addEventListener("click", (e) => {
+    unchecked.addEventListener("click", () => {
         unchecked.style.display = "none";
         checked.style.display = "inline";
         button.classList.add("abilitato");
@@ -18,7 +18,7 @@ const gestioneCheckbox = () => {
     });
 
     //Selezionando la checkbox spuntata la sostiutiamo con la checkbox vuota, disabilitiamo il bottone e facciamo comparire l'avviso.  -5-
-    checked.addEventListener("click", (e) => {
+    checked.addEventListener("click", () => {
         unchecked.style.display = "inline";
         checked.style.display = "none";
         button.classList.remove("abilitato");
@@ -39,5 +39,5 @@ const init = () => {
     gestioneCheckbox();
 };
 
-// Quando carica la pagina, esegue la funzione callback init  -1-
+// Quando carica la pagina, esegue la funzione callback init  -1-             
 window.addEventListener("load", init);

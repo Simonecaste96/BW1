@@ -1,5 +1,5 @@
 
-  const questions = [
+const questions = [
   {
     category: "Science: Computers",
     type: "multiple",
@@ -125,7 +125,7 @@ let arrayRisposte = []
 // }
 
 
-// LET COUNT FUNZIONA DA CONTATORE, CHE EQUIVALE ALLA PRIMA DOMANDA -3-
+// LET COUNT FUNZIONA DA CONTATORE, CHE EQUIVALE ALLA PRIMA DOMANDA -0-
 let count = 1;
 
 //SI CREA UNA FUNZIONE, LA QUALE PRENDE L'ID nell'html numeroDomanda, per poi aggiornarlo in base alla quantità delle domande effettuate. -4-
@@ -134,67 +134,118 @@ const numeroDomanda = () => {
 }
 //Randomizzazone delle risposte in modo che non escano in ordine come nell'array (cioè la prima corretta e le seguenti false) -5-
 const randomizzaRisposte = (array) => {
-    let arrayRisposte = [];
-    array.forEach(element => {
-        let random = Math.floor(Math.random() * array.length)
-        while (arrayRisposte.includes(array[random])) {
-          random = Math.floor(Math.random() * array.length)
-        }
-        arrayRisposte.push(array[random])
-    });
-    return arrayRisposte
+  let arrayRisposte = [];
+  array.forEach(element => {
+    let random = Math.floor(Math.random() * array.length)
+    while (arrayRisposte.includes(array[random])) {
+      random = Math.floor(Math.random() * array.length)
+    }
+    arrayRisposte.push(array[random])
+  });
+  return arrayRisposte
+}
+
+const rimuoviSelezionata = () => {
+  const selezionata = document.querySelector('.selezionata');
+    if (selezionata) {
+      selezionata.classList.remove('selezionata')
+    }
 }
 
 // Prendiamo le domande ed andiamo ad inserirle dentro al div questions   -7-
 const strutturaDomanda = (indice) => {
-    const domande = document.getElementById("questions")
-    let risposte = []
-    domande.innerHTML = ""; 
-    //Creiamo l'elemento h2 con l'id domanda e lo assegnamo alla const domanda impostando id e class.
-    const domanda = document.createElement("h2")
-    domanda.setAttribute("id", "domanda")
-    domanda.classList.add('domanda');
-    //Prendiamo la domanda dall'array questions con il suo indice estratto e l'assegnamo all'innerText della domanda.
-    domanda.innerText = questions[indice].question
-    domande.appendChild(domanda);
-    // Creiamo il primo bottone della risposta giusta, assegnando i valori indicati durante la progettazione (id,class,type)
-    const rispostaGiusta = document.createElement("button")
-    rispostaGiusta.setAttribute("id", "buttonRisposta1")
-    rispostaGiusta.classList.add('buttonRisposta')
-    rispostaGiusta.setAttribute("type", "button")
-    // Prendiamo la risposta corretta dalla domanda estratta dall'array e l'assegnamo all'innerText la risposta corretta.
-    rispostaGiusta.innerText = questions[indice].correct_answer;
-    risposte.push(rispostaGiusta)
-    // Cicliamo l'array delle risposte non corrette per creare i relativi bottoni
-    for (let i = 0; i < questions[indice].incorrect_answers.length; i++) {
-        const risposta = document.createElement("button");
-        // Mettiamo i+2 perché, essendo il primo id del bottone precedentemente creato con id 1, se il valore i è 1 va ad interferire con il primo bottone, se il valore di i è 0 in questo caso con il +2 va a partire da id 2
-        risposta.setAttribute('id', `buttonRisposta${(i+2)}`);
-        risposta.classList.add("buttonRisposta");
-        risposta.setAttribute("type", "button");
-        // Prendiamo la risposta errata dalla domanda estratta dall'array e l'assegnamo all'innerText della risposta della [i] corrispondente.
-        risposta.innerText = questions[indice].incorrect_answers[i]
-        risposte.push(risposta)
-    }
-    let risposteCasuali = randomizzaRisposte(risposte)
-    domande.append(...risposteCasuali)
+  const domande = document.getElementById("questions")
+  let risposte = []
+  domande.innerHTML = "";
+  //Creiamo l'elemento h2 con l'id domanda e lo assegnamo alla const domanda impostando id e class.
+  const domanda = document.createElement("h2")
+  domanda.setAttribute("id", "domanda")
+  domanda.classList.add('domanda');
+  //Prendiamo la domanda dall'array questions con il suo indice estratto e l'assegnamo all'innerText della domanda.
+  domanda.innerText = questions[indice].question
+  domande.appendChild(domanda);
+  // Creiamo il primo bottone della risposta giusta, assegnando i valori indicati durante la progettazione (id,class,type)
+  const rispostaGiusta = document.createElement("button")
+  rispostaGiusta.setAttribute("id", "buttonRisposta1")
+  rispostaGiusta.classList.add('buttonRisposta')
+  rispostaGiusta.setAttribute("type", "button")
+  rispostaGiusta.addEventListener("click", (e) => {
+    e.preventDefault();
+    rimuoviSelezionata()
+    rispostaGiusta.classList.add('selezionata');
+  })
+  // Prendiamo la risposta corretta dalla domanda estratta dall'array e l'assegnamo all'innerText la risposta corretta.
+  rispostaGiusta.innerText = questions[indice].correct_answer;
+  risposte.push(rispostaGiusta)
+  // Cicliamo l'array delle risposte non corrette per creare i relativi bottoni
+  for (let i = 0; i < questions[indice].incorrect_answers.length; i++) {
+    const risposta = document.createElement("button");
+    // Mettiamo i+2 perché, essendo il primo id del bottone precedentemente creato con id 1, se il valore i è 1 va ad interferire con il primo bottone, se il valore di i è 0 in questo caso con il +2 va a partire da id 2
+    risposta.setAttribute('id', `buttonRisposta${(i + 2)}`);
+    risposta.classList.add("buttonRisposta");
+    risposta.setAttribute("type", "button");
+    risposta.addEventListener("click", (e) => {
+      e.preventDefault();
+      rimuoviSelezionata()
+      risposta.classList.add('selezionata');
+    })
+    // Prendiamo la risposta errata dalla domanda estratta dall'array e l'assegnamo all'innerText della risposta della [i] corrispondente.
+    risposta.innerText = questions[indice].incorrect_answers[i]
+    risposte.push(risposta)
+  }
+  let risposteCasuali = randomizzaRisposte(risposte)
+  domande.append(...risposteCasuali)
 }
+
+const parteCountdown = () => {
+    let timer = 30;
+    const numero = document.getElementById('countdown-number');
+    numero.innerText = timer;
+    document.querySelector('svg .cerchio').style.animation = `countdown ${timer}s linear forwards`;
+    let intervallo = setInterval(() => {
+      timer--                                      // timer = timer - 1 || timer -= 1;
+      numero.innerText = timer
+      if (timer === 0) {
+        clearInterval(intervallo)
+        controlloRisposta()
+      }
+    }, 1000)
+}
+
+let domandaAttuale = 0;
+
 
 //Con il metodo math random andiamo a creare un numero randomico (tra 0 e 0.9999999) che verrà arrotondato da math floor e moltiplicato con la lunghezza dell'array questions in modo da ottenere un indice randomico  -6-
 const pescaDomanda = () => {
   const random = Math.floor(Math.random() * questions.length);
   //SE L'INDICE RANDOM è PRESENTE NELL'ARRAY, RIPESCA. ALTRIMENTI DICHIARA L'INDICE DELL'ARRAY RISPOSTE CON IL VALORE STRINGA: FALSE
-  if(arrayRisposte[random]) {
+  if (arrayRisposte[random]) {
     pescaDomanda();
   } else {
     arrayRisposte[random] = "false";
+    domandaAttuale = random;
     strutturaDomanda(random)
+    parteCountdown();
+  }
+}
+
+function controlloRisposta() {
+  const selezionata = document.querySelector('.selezionata')
+  if (selezionata && selezionata.id.includes("buttonRisposta1")) {
+    arrayRisposte[domandaAttuale] = "true";
+  }
+  if (count < questions.length) {
+    count++
+    numeroDomanda();
+    pescaDomanda();
+  } else {
+    // DA FARE DOPO
   }
 }
 
 const init = () => {
-    document.getElementById("totaleDomande").innerText = questions.length; // -2- La funzione init prende nel documento l'elemento con l'id totaleDomande e dagli come valore la lunghezza delle domande, dopo di che invoca le funzioni numeroDomanda e pescaDomanda
-    numeroDomanda();
+  document.getElementById("totaleDomande").innerText = questions.length; // -1- La funzione init prende nel documento l'elemento con l'id totaleDomande e dagli come valore la lunghezza delle domande, dopo di che invoca le funzioni numeroDomanda e pescaDomanda
+  numeroDomanda();
   pescaDomanda();
 };
 
