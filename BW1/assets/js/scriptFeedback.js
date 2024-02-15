@@ -49,7 +49,7 @@ const gestisceBottone = () => {
         if (!form.checkValidity()) {
             return;
         }
-        sessionStorage.setItem('feedback', JSON.stringify({stelline: selezionata, commento: input.value}))
+        sessionStorage.setItem('feedback', JSON.stringify({ stelline: selezionata, commento: input.value }))
         console.log('Voto:', selezionata)
         selezionata = 1;
         console.log('Commento:', input.value)
@@ -61,6 +61,12 @@ const gestisceBottone = () => {
 
 const init = () => {
     let feedback = sessionStorage.getItem('feedback')
+    let risultati = sessionStorage.getItem("risultati")
+    let abilitato = sessionStorage.getItem('abilitato')
+    if (!abilitato || abilitato && abilitato === "no" || !risultati) {
+        window.location.href = "index.html";
+        return
+    }
     feedback = JSON.parse(feedback)
     if (feedback) {
         primoDiv.style.display = 'none'

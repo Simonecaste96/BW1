@@ -271,7 +271,18 @@ const inizializaBottone = () => {
 }
 
 const init = () => {
+  let abilitato = sessionStorage.getItem('abilitato')
+  let risultati = sessionStorage.getItem('risultati')
+  if (!abilitato || abilitato && abilitato === "no") {
+    window.location.href = "index.html";
+    return
+  }
+  if (risultati) {
+    window.location.href = "indexRisultati.html";
+    return
+  }
   document.getElementById("totaleDomande").innerText = questions.length; // -1- La funzione init prende nel documento l'elemento con l'id totaleDomande e dagli come valore la lunghezza delle domande, dopo di che invoca le funzioni numeroDomanda e pescaDomanda
+  document.getElementById('container').style.display = 'block'
   numeroDomanda();
   pescaDomanda();
   inizializaBottone();

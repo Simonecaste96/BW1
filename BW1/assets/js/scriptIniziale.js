@@ -1,6 +1,3 @@
-
-
-
 //Prendiamo gli elementi dell'HTML che ci servono nel JS  -3-
 
 const gestioneCheckbox = () => {
@@ -14,6 +11,7 @@ const gestioneCheckbox = () => {
         unchecked.style.display = "none";
         checked.style.display = "inline";
         button.classList.add("abilitato");
+        sessionStorage.setItem('abilitato', 'si')
         avviso.style.display = "none";
     });
 
@@ -22,6 +20,7 @@ const gestioneCheckbox = () => {
         unchecked.style.display = "inline";
         checked.style.display = "none";
         button.classList.remove("abilitato");
+        sessionStorage.setItem('abilitato', 'no')
         avviso.style.display = "block";
     });
 
@@ -36,6 +35,11 @@ const gestioneCheckbox = () => {
 
 // La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox  -2-
 const init = () => {
+    let risultati = sessionStorage.getItem('risultati')
+    if (risultati) {
+        window.location.href = 'indexRisultati.html'
+        return
+    }
     gestioneCheckbox();
 };
 

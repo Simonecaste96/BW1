@@ -32,6 +32,16 @@ const modificaRisultato = (risultati) => {
     if (corrette >= risposteMinime) {
         titoloRisposta.innerHTML = risposte.passato.title;
         testoRisposta.innerText = risposte.passato.message;
+        // Imposta la configurazione dei coriandoli
+        const confettiSettings = {
+            count: party.variation.range(100, 200), // Numero casuale di coriandoli
+            size: 1, // Dimensioni casuali dei coriandoli
+            velocity: party.variation.range(3, 6), // Velocità di caduta casuale
+        };
+
+
+        // Avvia l'effetto coriandoli
+        party.confetti(document.body, confettiSettings);
     } else {
         titoloRisposta.innerHTML = risposte.nonpassato.title;
         testoRisposta.innerText = risposte.nonpassato.message;
@@ -154,6 +164,12 @@ const generaCerchio = (corrette, sbagliate, totali) => {
 // La funzione init prende i risultati salvati precedentemente sul sessionstorage, che stringify 
 const init = () => {
     let risultati = sessionStorage.getItem("risultati")
+    let abilitato = sessionStorage.getItem('abilitato')
+    if (!abilitato || abilitato && abilitato === "no" || !risultati) {
+        window.location.href = "index.html";
+        return
+    }
+    document.getElementById('container').style.display = 'block'
     risultati = JSON.parse(risultati)
     generaCerchio(risultati.corrette, risultati.sbagliate, risultati.totale);
     modificaRisultato(risultati)

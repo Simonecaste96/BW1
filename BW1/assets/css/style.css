@@ -52,11 +52,14 @@ label {
     line-height: 0.8em;
     margin-top: 100px;
 }
+
 .h2,
 .avviso,
-.fa-square-check, .domande_totali {
+.fa-square-check,
+.domande_totali {
     color: #d20094;
 }
+
 .h2 {
     font-size: 2em;
     margin-bottom: 0;
@@ -65,6 +68,7 @@ label {
 .container_main p {
     margin-bottom: 50px;
 }
+
 .container_main ul {
     padding-inline-start: 30px;
 }
@@ -73,6 +77,7 @@ label {
     max-width: 617px;
     min-width: 450px;
 }
+
 .contenitoreBtn {
     margin-top: 30px;
 }
@@ -87,7 +92,11 @@ label {
     color: white;
     margin-left: 9.5vw;
 }
-.abilitato, .buttonProssima, .buttonFeedback {
+
+.abilitato,
+.buttonProssima,
+.buttonFeedback,
+.buttonInformazioni {
     cursor: pointer;
     background-color: #00ffff;
     color: black;
@@ -97,7 +106,10 @@ label {
     cursor: pointer;
 }
 
-.contenitoreBtn .abilitato:hover, .buttonProssima:hover, .buttonFeedback:hover {
+.contenitoreBtn .abilitato:hover,
+.buttonProssima:hover,
+.buttonFeedback:hover,
+.buttonInformazioni:hover {
     box-shadow: 1px 1px 15px #00ffff52, 1px -1px 15px #00ffff52,
         -1px 1px 15px #00ffff52, -1px -1px 15px #00ffff52;
 }
@@ -111,82 +123,93 @@ label {
 /* COUNTDOWN */
 .testo_countdown,
 .testo_countdown2 {
-  position: absolute;
-  font-size: 0.5em;
-  color: white;
+    position: absolute;
+    font-size: 0.5em;
+    color: white;
 }
 
 .testo_countdown {
-  top: 23px;
-  left: 50%;
-  transform: translateX(-50%);
+    top: 23px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.testo_countdown2{
-  bottom: 23px;
-  left: 50%;
-  transform: translateX(-50%);
+.testo_countdown2 {
+    bottom: 23px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #countdown {
-  position: relative;
-  margin: 40px 30px auto auto;
-  height: 100px; /* altezza adeguata per contenere il cerchio più grande */
-  width: 100px; /* larghezza adeguata per contenere il cerchio più grande */
-  text-align: right;
-  zoom: 1.6;
+    position: relative;
+    margin: 40px 30px auto auto;
+    height: 100px;
+    /* altezza adeguata per contenere il cerchio più grande */
+    width: 100px;
+    /* larghezza adeguata per contenere il cerchio più grande */
+    text-align: right;
+    zoom: 1.6;
 }
 
 #countdown-number {
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px; /* dimensione del testo */
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    /* dimensione del testo */
 }
 
 #countdown svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%; /* larghezza adeguata per contenere il cerchio più grande */
-  height: 100%; /* altezza adeguata per contenere il cerchio più grande */
-  transform: rotateY(-180deg) rotateZ(-90deg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    /* larghezza adeguata per contenere il cerchio più grande */
+    height: 100%;
+    /* altezza adeguata per contenere il cerchio più grande */
+    transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
 #countdown svg .cerchio {
-  stroke-dasharray: 283px; /* circonferenza del cerchio */
-  stroke-dashoffset: 0px;
-  stroke-width: 10px; /* spessore del bordo */
-  stroke-linecap: round;
-  stroke: #d20094;
-  fill: none;
-  /* animation: countdown 10s linear forwards; */
+    stroke-dasharray: 283px;
+    /* circonferenza del cerchio */
+    stroke-dashoffset: 0px;
+    stroke-width: 10px;
+    /* spessore del bordo */
+    stroke-linecap: round;
+    stroke: #d20094;
+    fill: none;
+    /* animation: countdown 10s linear forwards; */
 }
 
-#countdown svg .cerchio2{
-  stroke-dasharray: 283px; /* circonferenza del cerchio */
-  stroke-dashoffset: 0px;
-  stroke-width: 10px; /* spessore del bordo */
-  stroke: gray;
-  fill: none;
+#countdown svg .cerchio2 {
+    stroke-dasharray: 283px;
+    /* circonferenza del cerchio */
+    stroke-dashoffset: 0px;
+    stroke-width: 10px;
+    /* spessore del bordo */
+    stroke: gray;
+    fill: none;
 }
 
 @keyframes countdown {
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 283px; /* circonferenza del cerchio */
-  }
+    from {
+        stroke-dashoffset: 0px;
+    }
+
+    to {
+        stroke-dashoffset: 283px;
+        /* circonferenza del cerchio */
+    }
 }
 
 /* STRUTTURA */
 
-.buttonRisposta{
+.buttonRisposta {
     border-radius: 25px;
-    width:45%;
+    width: 45%;
     height: 50px;
     margin-right: 4%;
     margin-top: 30px;
@@ -203,7 +226,7 @@ label {
 
 .buttonRisposta:hover {
     border: 0;
-    
+
 
 }
 
@@ -215,16 +238,16 @@ label {
     font-weight: 500;
 }
 
-.buttonProssima{
-width:200px;
-height: 50px;
-font-weight: bold;
-position: absolute;
-top: 0;
-right: 0;
-border: solid 0;
-cursor: pointer;
-background-color: #00ffff;
+.buttonProssima {
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: solid 0;
+    cursor: pointer;
+    background-color: #00ffff;
 }
 
 .numero_domande {
@@ -232,7 +255,7 @@ background-color: #00ffff;
     width: max-content;
 }
 
-.contenitoreProsegui{
+.contenitoreProsegui {
     vertical-align: middle;
     position: relative;
     margin-top: 50px;
@@ -242,8 +265,8 @@ background-color: #00ffff;
     background-color: #d20094;
 }
 
-.buttonFeedback{
-    width:200px;
+.buttonFeedback {
+    width: 200px;
     height: 50px;
     font-weight: bold;
     top: 0;
@@ -251,12 +274,13 @@ background-color: #00ffff;
     border: solid 0;
     cursor: pointer;
     background-color: #00ffff;
-    margin-top: 5%; 
+    margin-top: 5%;
+
 }
 
-.contenitoreRisultati{
+.contenitoreRisultati {
     text-align: center;
-      
+
 }
 
 .ciambella {
@@ -270,7 +294,7 @@ background-color: #00ffff;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
+
 }
 
 .testo_ciambella p {
@@ -281,7 +305,7 @@ background-color: #00ffff;
     font-size: 0.8em;
 }
 
-.contenitoreCiambella > div {
+.contenitoreCiambella>div {
     width: fit-content;
     display: inline-block;
     vertical-align: middle;
@@ -299,18 +323,54 @@ background-color: #00ffff;
     margin-right: 10px;
 }
 
+
 .buttonInformazioni {
-    width:200px;
+    width: 200px;
     height: 50px;
     font-weight: bold;
     top: 0;
     right: 0;
     border: solid 0;
-    cursor: pointer;
-    background-color: #00ffff;
-    margin-top: 5%; 
+    margin-top: 10%;
+    cursor: default;
 }
+
 
 .centrato {
     text-align: center;
+}
+
+#feedback {
+    text-align: center;
+    width: 60%;
+    margin: 0 auto
+}
+
+#feedback h2 {
+    font-weight: 500;
+}
+
+#feedback h1 {
+    font-size: 50px;
+}
+
+#stelline {
+    margin-top: 30px;
+    margin-bottom: 70px;
+
+}
+
+#commento {
+    height: 30px;
+    background-color: transparent;
+    border: solid 0;
+    border-bottom: solid 2px #d20094;
+    color: white;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#commento:focus-visible {
+    outline: 0;
 }
