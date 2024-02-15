@@ -146,7 +146,7 @@ label {
   font-size: 24px; /* dimensione del testo */
 }
 
-svg {
+#countdown svg {
   position: absolute;
   top: 0;
   right: 0;
@@ -155,7 +155,7 @@ svg {
   transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
-svg .cerchio {
+#countdown svg .cerchio {
   stroke-dasharray: 283px; /* circonferenza del cerchio */
   stroke-dashoffset: 0px;
   stroke-width: 10px; /* spessore del bordo */
@@ -287,7 +287,7 @@ background-color: #00ffff;
     margin: 0 20px;
 }
 
-.colorata {
+.colorata svg path {
     fill: #00ffff;
 }
 
@@ -295,4 +295,5 @@ background-color: #00ffff;
     display: inline;
     width: 47px;
     height: 46px;
+    margin-right: 10px;
 }
