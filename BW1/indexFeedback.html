@@ -27,17 +27,20 @@
         <header>
             <img class="logo" src="assets/img/epicode_logo.png" />
         </header>
-        <div>
-            <form method="post">  <!--Con il metodo post -->
+        <div id="feedback">
+            <form method="post" id="form">  <!--Con il metodo post -->
                 <h1>Dicci come sta andando</h1>
                 <h2>Da 1 a 10, quanto raccomanderesti EPICODE ad amici e colleghi?</h2>
                 <div id="stelline"></div>
                 <h2>Lascia un feedback e raccontaci come sta andando questa esperienza</h2>
 
                 <input type="text" placeholder="Scrivi un commento qui" name="commento" id="commento" min="10" required/>
-                <button type="submit">Invia</button>
+                <button id="buttonInformazioni" class="buttonInformazioni" type="submit">PIÙ INFORMAZIONI</button>
             </form>
-
+ 
+        </div>
+        <div id="feedbackInviato" style="display: none;">
+            <h2 class="centrato">Grazie per il feedback</h2>
         </div>
 
         <script src="assets/js/scriptFeedback.js"></script>

@@ -1,7 +1,11 @@
+let selezionata = 0;
+const primoDiv = document.getElementById('feedback')
+const secondoDiv = document.getElementById('feedbackInviato');
+
 const gestioneColori = (numStellina) => {
     const stelline = document.querySelectorAll('.stellina')
-    for (let i=0; i < stelline.length; i++) {
-        if ((i+1) <= numStellina) {
+    for (let i = 0; i < stelline.length; i++) {
+        if (i <= numStellina) {
             stelline[i].classList.add('colorata')
         } else {
             stelline[i].classList.remove('colorata')
@@ -19,24 +23,54 @@ const gestisceStars = () => {
         const stellina = document.createElement('div');
         stellina.innerHTML = stella;
         stellina.classList.add('stellina')
-        stellina.setAttribute('alt', `stellina ${i + 1}`);
         if (i === 0) {
             stellina.classList.add('colorata');
         }
         stellina.addEventListener('click', (e) => {
-            gestioneColori(i + 1);
+            selezionata = i;
+            gestioneColori(i);
+        })
+        stellina.addEventListener('mouseenter', (e) => {
+            gestioneColori(i)
         })
         stelline.appendChild(stellina)
     }
+    stelline.addEventListener('mouseleave', (e) => {
+        gestioneColori(selezionata)
+    })
 }
 
 const gestisceBottone = () => {
-
+    const bottone = document.getElementById('buttonInformazioni')
+    const form = document.getElementById('form')
+    const input = document.getElementById('commento');
+    bottone.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+            return;
+        }
+        sessionStorage.setItem('feedback', JSON.stringify({stelline: selezionata, commento: input.value}))
+        console.log('Voto:', selezionata)
+        selezionata = 1;
+        console.log('Commento:', input.value)
+        input.value = "";
+        primoDiv.style.display = 'none'
+        secondoDiv.style.display = 'block'
+    })
 }
 
 const init = () => {
-    gestisceStars();
-    gestisceBottone();
+    let feedback = sessionStorage.getItem('feedback')
+    feedback = JSON.parse(feedback)
+    if (feedback) {
+        primoDiv.style.display = 'none'
+        secondoDiv.style.display = 'block'
+    } else {
+        gestisceStars();
+        gestisceBottone();
+        secondoDiv.style.display = 'none'
+        primoDiv.style.display = 'block'
+    }
 }
 
 window.addEventListener("load", init)
