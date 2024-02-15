@@ -11,7 +11,7 @@ const gestioneCheckbox = () => {
         unchecked.style.display = "none";
         checked.style.display = "inline";
         button.classList.add("abilitato");
-        sessionStorage.setItem('abilitato', 'si')
+        sessionStorage.setItem("abilitato", "si");
         avviso.style.display = "none";
     });
 
@@ -20,7 +20,7 @@ const gestioneCheckbox = () => {
         unchecked.style.display = "inline";
         checked.style.display = "none";
         button.classList.remove("abilitato");
-        sessionStorage.setItem('abilitato', 'no')
+        sessionStorage.setItem("abilitato", "no");
         avviso.style.display = "block";
     });
 
@@ -28,20 +28,20 @@ const gestioneCheckbox = () => {
     button.addEventListener("click", (e) => {
         e.preventDefault();
         if (button.classList.contains("abilitato")) {
-            window.location.href = 'indexDomande.html';
+            window.location.href = "indexDomande.html";
         }
-    })
+    });
 };
 
 // La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox  -2-
 const init = () => {
-    let risultati = sessionStorage.getItem('risultati')
+    let risultati = sessionStorage.getItem("risultati");
     if (risultati) {
-        window.location.href = 'indexRisultati.html'
-        return
+        window.location.href = "indexRisultati.html";
+        return;
     }
     gestioneCheckbox();
 };
 
-// Quando carica la pagina, esegue la funzione callback init  -1-             
+// Quando carica la pagina, esegue la funzione callback init  -1-
 window.addEventListener("load", init);

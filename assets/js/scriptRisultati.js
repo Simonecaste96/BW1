@@ -1,18 +1,20 @@
 const risposte = {
     passato: {
-        title: "Congratulazioni <span style=\"color: cyan\">Hai passato l'esame.</span>",
-        message: "Riceverai il certificato in qualche minuto. Controlla la tua mail (anche cartella promozioni / spam)"
+        title: 'Congratulazioni <span style="color: cyan">Hai passato l\'esame.</span>',
+        message:
+            "Riceverai il certificato in qualche minuto. Controlla la tua mail (anche cartella promozioni / spam)",
     },
     nonpassato: {
-        title: "Ci dispiace molto <span style=\"color: #d20094\">Non hai passato l'esame.</span>",
-        message: "Il docente si metterà in contatto con te per capire i tuoi errori, riuscirai sicuramente a migliorare in futuro."
+        title: 'Ci dispiace molto <span style="color: #d20094">Non hai passato l\'esame.</span>',
+        message:
+            "Il docente si metterà in contatto con te per capire i tuoi errori, riuscirai sicuramente a migliorare in futuro.",
     },
-}
+};
 
 const titoloRisultato = document.getElementById("titoloRisultato");
 const testoRisultato = document.getElementById("testoRisultato");
 const modificaRisultato = (risultati) => {
-    let { corrette, sbagliate, totale } = risultati
+    let { corrette, sbagliate, totale } = risultati;
     // scomposizione dell'oggetto
     // let corrette = risultati.corrette
     // let sbagliate = risultati.sbagliate
@@ -24,7 +26,7 @@ const modificaRisultato = (risultati) => {
     const testoRisposta = document.getElementById("testoRisultato");
     risposteCorrette.innerText = corrette;
     risposteSbagliate.innerText = sbagliate;
-    //scomposizione array risposteTotali 
+    //scomposizione array risposteTotali
     for (let i = 0; i < risposteTotali; i++) {
         risposteTotali[i].innerText = totale;
     }
@@ -39,13 +41,11 @@ const modificaRisultato = (risultati) => {
             velocity: party.variation.range(3, 6), // Velocità di caduta casuale
         };
 
-
         // Avvia l'effetto coriandoli
         party.confetti(document.body, confettiSettings);
     } else {
         titoloRisposta.innerHTML = risposte.nonpassato.title;
         testoRisposta.innerText = risposte.nonpassato.message;
-
     }
 };
 
@@ -58,22 +58,18 @@ const generaCerchio = (corrette, sbagliate, totali) => {
                 data: [corrette, sbagliate],
                 backgroundColor: ["#00ffff", "#d20094"], // Colori delle fette
                 borderWidth: 0, // Rimuove lo spazio tra i colori
-                color: "black"
-            }
+                color: "black",
+            },
         ],
-        labels: ["Corrette", "Sbagliate"]
+        labels: ["Corrette", "Sbagliate"],
     };
-
-
-
-
 
     // Configurazione del grafico
     const options = {
         responsive: false,
         plugins: {
             legend: {
-                display: false
+                display: false,
             },
             tooltip: {
                 // Disable the on-canvas tooltip
@@ -81,13 +77,13 @@ const generaCerchio = (corrette, sbagliate, totali) => {
 
                 external: function (context) {
                     // Tooltip Element
-                    let tooltipEl = document.getElementById('chartjs-tooltip');
+                    let tooltipEl = document.getElementById("chartjs-tooltip");
 
                     // Create element on first render
                     if (!tooltipEl) {
-                        tooltipEl = document.createElement('div');
-                        tooltipEl.id = 'chartjs-tooltip';
-                        tooltipEl.innerHTML = '<table></table>';
+                        tooltipEl = document.createElement("div");
+                        tooltipEl.id = "chartjs-tooltip";
+                        tooltipEl.innerHTML = "<table></table>";
                         document.body.appendChild(tooltipEl);
                     }
 
@@ -99,11 +95,15 @@ const generaCerchio = (corrette, sbagliate, totali) => {
                     }
 
                     // Set caret Position
-                    tooltipEl.classList.remove('above', 'below', 'no-transform');
+                    tooltipEl.classList.remove(
+                        "above",
+                        "below",
+                        "no-transform"
+                    );
                     if (tooltipModel.yAlign) {
                         tooltipEl.classList.add(tooltipModel.yAlign);
                     } else {
-                        tooltipEl.classList.add('no-transform');
+                        tooltipEl.classList.add("no-transform");
                     }
 
                     function getBody(bodyItem) {
@@ -115,42 +115,62 @@ const generaCerchio = (corrette, sbagliate, totali) => {
                         const titleLines = tooltipModel.title || [];
                         const bodyLines = tooltipModel.body.map(getBody);
 
-                        let innerHtml = '<thead>';
+                        let innerHtml = "<thead>";
 
                         titleLines.forEach(function (title) {
-                            innerHtml += '<tr><th>' + title + '</th></tr>';
+                            innerHtml += "<tr><th>" + title + "</th></tr>";
                         });
-                        innerHtml += '</thead><tbody>';
+                        innerHtml += "</thead><tbody>";
 
                         bodyLines.forEach(function (body, i) {
                             const colors = tooltipModel.labelColors[i];
-                            let style = 'background:' + colors.backgroundColor;
-                            style += '; border-color:' + colors.borderColor;
-                            style += '; border-width: 2px';
-                            const span = '<span style="' + style + '">' + body + '</span>';
-                            innerHtml += '<tr><td>' + span + '</td></tr>';
+                            let style = "background:" + colors.backgroundColor;
+                            style += "; border-color:" + colors.borderColor;
+                            style += "; border-width: 2px";
+                            const span =
+                                '<span style="' +
+                                style +
+                                '">' +
+                                body +
+                                "</span>";
+                            innerHtml += "<tr><td>" + span + "</td></tr>";
                         });
-                        innerHtml += '</tbody>';
+                        innerHtml += "</tbody>";
 
-                        let tableRoot = tooltipEl.querySelector('table');
+                        let tableRoot = tooltipEl.querySelector("table");
                         tableRoot.innerHTML = innerHtml;
                     }
 
-                    const position = context.chart.canvas.getBoundingClientRect();
-                    const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+                    const position =
+                        context.chart.canvas.getBoundingClientRect();
+                    const bodyFont = Chart.helpers.toFont(
+                        tooltipModel.options.bodyFont
+                    );
 
                     // Display, position, and set styles for font
                     tooltipEl.style.opacity = 1;
-                    tooltipEl.style.position = 'absolute';
-                    tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
-                    tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+                    tooltipEl.style.position = "absolute";
+                    tooltipEl.style.left =
+                        position.left +
+                        window.pageXOffset +
+                        tooltipModel.caretX +
+                        "px";
+                    tooltipEl.style.top =
+                        position.top +
+                        window.pageYOffset +
+                        tooltipModel.caretY +
+                        "px";
                     tooltipEl.style.font = bodyFont.string;
-                    tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
-                    tooltipEl.style.pointerEvents = 'none';
-                }
-            }
+                    tooltipEl.style.padding =
+                        tooltipModel.padding +
+                        "px " +
+                        tooltipModel.padding +
+                        "px";
+                    tooltipEl.style.pointerEvents = "none";
+                },
+            },
         },
-        cutout: "70%" // Percentuale di spazio vuoto all'interno del grafico
+        cutout: "70%", // Percentuale di spazio vuoto all'interno del grafico
     };
 
     // Creiamo il grafico
@@ -158,29 +178,27 @@ const generaCerchio = (corrette, sbagliate, totali) => {
     new Chart(ctx, {
         type: "doughnut",
         data: data,
-        options: options
+        options: options,
     });
-}
-// La funzione init prende i risultati salvati precedentemente sul sessionstorage, che stringify 
+};
+// La funzione init prende i risultati salvati precedentemente sul sessionstorage, che stringify
 const init = () => {
-    let risultati = sessionStorage.getItem("risultati")
-    let abilitato = sessionStorage.getItem('abilitato')
-    if (!abilitato || abilitato && abilitato === "no" || !risultati) {
+    let risultati = sessionStorage.getItem("risultati");
+    let abilitato = sessionStorage.getItem("abilitato");
+    if (!abilitato || (abilitato && abilitato === "no") || !risultati) {
         window.location.href = "index.html";
-        return
+        return;
     }
-    document.getElementById('container').style.display = 'block'
-    risultati = JSON.parse(risultati)
+    document.getElementById("container").style.display = "block";
+    risultati = JSON.parse(risultati);
     generaCerchio(risultati.corrette, risultati.sbagliate, risultati.totale);
-    modificaRisultato(risultati)
-}
+    modificaRisultato(risultati);
+};
 
-
-const buttonFeedback = document.getElementById("buttonFeedback")
-buttonFeedback.addEventListener('click', (e) => {
+const buttonFeedback = document.getElementById("buttonFeedback");
+buttonFeedback.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = 'indexFeedback.html';
-})
+    window.location.href = "indexFeedback.html";
+});
 
-
-window.addEventListener('load', init)
+window.addEventListener("load", init);
