@@ -7,6 +7,16 @@ body {
     color: white;
     font-family: "Inter", sans-serif;
     line-height: 1.5em;
+    height: 100vh;
+}
+
+body > footer {
+    position: sticky;
+    top: 100vh;
+}
+
+footer {
+    margin: 20px 0;
 }
 
 .background {
@@ -365,4 +375,39 @@ label {
 
 #commento:focus-visible {
     outline: 0;
+}
+
+footer {
+    text-align: center;
+}
+
+a:link, a:visited {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.popup, .overlay {
+    display: none;
+    position: fixed;
+}
+
+.popup {
+    color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }

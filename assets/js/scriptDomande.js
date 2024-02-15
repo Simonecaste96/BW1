@@ -1,3 +1,6 @@
+const popup = document.getElementById('popup');
+const overlay = document.getElementById('overlay');
+
 const questions = [
     {
         category: "Science: Computers",
@@ -232,12 +235,12 @@ let oggetto = {
     risultati: "",
 };
 
-function controlloRisposta() {
+function controlloRisposta(barato) {
     const selezionata = document.querySelector(".selezionata");
     if (selezionata && selezionata.id.includes("buttonRisposta1")) {
         arrayRisposte[domandaAttuale] = "true";
     }
-    if (count < questions.length) {
+    if (!barato && count < questions.length) {
         count++;
         numeroDomanda();
         pescaDomanda();
@@ -246,7 +249,7 @@ function controlloRisposta() {
             (valore) => valore === "true"
         );
         const countCorrette = risposteCorrette.length;
-        const countSbagliate = arrayRisposte.length - countCorrette;
+        const countSbagliate = questions.length - countCorrette;
         sessionStorage.setItem(
             "risultati",
             JSON.stringify({
@@ -287,3 +290,32 @@ const init = () => {
 };
 
 window.addEventListener("load", init); //-1- Attendiamo il caricamento della pagina ed avviamo la funzione init
+
+let intervallo2 = null;
+window.addEventListener('blur', () => {
+  popup.style.display = 'block';
+  overlay.style.display = 'block';
+  popup.innerText = 'Torna nella pagina entro 10 secondi';
+  let count = 10;
+  intervallo2 = setInterval(() => {
+    count--
+    popup.innerText = `Torna nella pagina entro ${count} secondi`;
+    if (count === 0) {
+      clearInterval(intervallo2)
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+      clearInterval(intervallo);
+      controlloRisposta(true);
+      intervallo2 = null;
+    }
+  }, 1000)
+})
+
+overlay.addEventListener('click', function(e) {
+  if (intervallo2) {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    clearInterval(intervallo2)
+    intervallo2 = null;
+  }
+})
