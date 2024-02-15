@@ -87,7 +87,7 @@ label {
     color: white;
     margin-left: 9.5vw;
 }
-.abilitato, .buttonProssima {
+.abilitato, .buttonProssima, .buttonFeedback {
     cursor: pointer;
     background-color: #00ffff;
     color: black;
@@ -97,7 +97,7 @@ label {
     cursor: pointer;
 }
 
-.contenitoreBtn .abilitato:hover, .buttonProssima:hover {
+.contenitoreBtn .abilitato:hover, .buttonProssima:hover, .buttonFeedback:hover {
     box-shadow: 1px 1px 15px #00ffff52, 1px -1px 15px #00ffff52,
         -1px 1px 15px #00ffff52, -1px -1px 15px #00ffff52;
 }
@@ -248,11 +248,9 @@ background-color: #00ffff;
     font-weight: bold;
     top: 0;
     right: 0;
-    border: solid 2px white;
+    border: solid 0;
     cursor: pointer;
-    background-color:transparent;  
-    color: white;
-    box-shadow: 1px 1px 10px #0044ff52; 
+    background-color: #00ffff;
     margin-top: 5%; 
 }
 .contenitoreRisultati{
@@ -287,4 +285,14 @@ background-color: #00ffff;
     display: inline-block;
     vertical-align: middle;
     margin: 0 20px;
+}
+
+.colorata {
+    fill: #00ffff;
+}
+
+.stellina {
+    display: inline;
+    width: 47px;
+    height: 46px;
 }

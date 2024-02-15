@@ -1,16 +1,62 @@
+const risposte = {
+    passato: {
+        title: "Congratulazioni <span style=\"color: cyan\">Hai passato l'esame.</span>",
+        message: "Riceverai il certificato in qualche minuto. Controlla la tua mail (anche cartella promozioni / spam)"
+    },
+    nonpassato: {
+        title: "Ci dispiace molto <span style=\"color: #d20094\">Non hai passato l'esame.</span>",
+        message: "Il docente si metterà in contatto con te per capire i tuoi errori, riuscirai sicuramente a migliorare in futuro."
+    },
+}
+
+const titoloRisultato = document.getElementById("titoloRisultato");
+const testoRisultato = document.getElementById("testoRisultato");
+const modificaRisultato = (risultati) => {
+    let { corrette, sbagliate, totale } = risultati
+    // scomposizione dell'oggetto
+    // let corrette = risultati.corrette
+    // let sbagliate = risultati.sbagliate
+    // let totale = risultati.totale
+    const risposteCorrette = document.getElementById("corrette");
+    const risposteSbagliate = document.getElementById("sbagliate");
+    const risposteTotali = document.querySelectorAll(".totaleDomande");
+    const titoloRisposta = document.getElementById("titoloRisultato");
+    const testoRisposta = document.getElementById("testoRisultato");
+    risposteCorrette.innerText = corrette;
+    risposteSbagliate.innerText = sbagliate;
+    //scomposizione array risposteTotali 
+    for (let i = 0; i < risposteTotali; i++) {
+        risposteTotali[i].innerText = totale;
+    }
+    const risposteMinime = Math.floor((60 * totale) / 100);
+    if (corrette >= risposteMinime) {
+        titoloRisposta.innerHTML = risposte.passato.title;
+        testoRisposta.innerText = risposte.passato.message;
+    } else {
+        titoloRisposta.innerHTML = risposte.nonpassato.title;
+        testoRisposta.innerText = risposte.nonpassato.message;
+
+    }
+};
+
+//Funzione che genera il cerchio dei risultati e modifica le relative label
 const generaCerchio = (corrette, sbagliate, totali) => {
     // Definiamo i dati per il grafico
     const data = {
         datasets: [
             {
                 data: [corrette, sbagliate],
-                backgroundColor: ["#00ff00", "#ff0000"], // Colori delle fette
+                backgroundColor: ["#00ffff", "#d20094"], // Colori delle fette
                 borderWidth: 0, // Rimuove lo spazio tra i colori
                 color: "black"
             }
         ],
         labels: ["Corrette", "Sbagliate"]
     };
+
+
+
+
 
     // Configurazione del grafico
     const options = {
@@ -23,7 +69,7 @@ const generaCerchio = (corrette, sbagliate, totali) => {
                 // Disable the on-canvas tooltip
                 enabled: false,
 
-                external: function(context) {
+                external: function (context) {
                     // Tooltip Element
                     let tooltipEl = document.getElementById('chartjs-tooltip');
 
@@ -61,12 +107,12 @@ const generaCerchio = (corrette, sbagliate, totali) => {
 
                         let innerHtml = '<thead>';
 
-                        titleLines.forEach(function(title) {
+                        titleLines.forEach(function (title) {
                             innerHtml += '<tr><th>' + title + '</th></tr>';
                         });
                         innerHtml += '</thead><tbody>';
 
-                        bodyLines.forEach(function(body, i) {
+                        bodyLines.forEach(function (body, i) {
                             const colors = tooltipModel.labelColors[i];
                             let style = 'background:' + colors.backgroundColor;
                             style += '; border-color:' + colors.borderColor;
@@ -94,7 +140,7 @@ const generaCerchio = (corrette, sbagliate, totali) => {
                 }
             }
         },
-        cutout: "65%" // Percentuale di spazio vuoto all'interno del grafico
+        cutout: "70%" // Percentuale di spazio vuoto all'interno del grafico
     };
 
     // Creiamo il grafico
@@ -105,11 +151,12 @@ const generaCerchio = (corrette, sbagliate, totali) => {
         options: options
     });
 }
-
+// La funzione init prende i risultati salvati precedentemente sul sessionstorage, che stringify 
 const init = () => {
     let risultati = sessionStorage.getItem("risultati")
     risultati = JSON.parse(risultati)
-    generaCerchio(risultati.corrette, risultati.sbagliate, risultati.totale)
+    generaCerchio(risultati.corrette, risultati.sbagliate, risultati.totale);
+    modificaRisultato(risultati)
 }
 
 
