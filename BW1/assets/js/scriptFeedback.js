@@ -50,8 +50,8 @@ const gestisceBottone = () => {
             return;
         }
         sessionStorage.setItem('feedback', JSON.stringify({ stelline: selezionata, commento: input.value }))
-        console.log('Voto:', selezionata)
-        selezionata = 1;
+        console.log('Voto:', selezionata + 1)
+        selezionata = 0;
         console.log('Commento:', input.value)
         input.value = "";
         primoDiv.style.display = 'none'
