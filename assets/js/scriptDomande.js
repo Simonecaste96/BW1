@@ -1,5 +1,5 @@
-const popup = document.getElementById('popup');
-const overlay = document.getElementById('overlay');
+const popup = document.getElementById("popup");
+const overlay = document.getElementById("overlay");
 
 const questions = [
     {
@@ -98,7 +98,6 @@ const questions = [
 ];
 
 let arrayRisposte = [];
-
 
 // LET COUNT FUNZIONA DA CONTATORE, CHE EQUIVALE ALLA PRIMA DOMANDA -0-
 let count = 1;
@@ -270,30 +269,31 @@ const init = () => {
 window.addEventListener("load", init); //-1- Attendiamo il caricamento della pagina ed avviamo la funzione init
 
 let intervallo2 = null;
-window.addEventListener('blur', () => {
-  popup.style.display = 'block';
-  overlay.style.display = 'block';
-  popup.innerText = 'Torna nella pagina entro 10 secondi';
-  let count = 10;
-  intervallo2 = setInterval(() => {
-    count--
-    popup.innerText = `Torna nella pagina entro ${count} secondi`;
-    if (count === 0) {
-      clearInterval(intervallo2)
-      popup.style.display = 'none';
-      overlay.style.display = 'none';
-      clearInterval(intervallo);
-      controlloRisposta(true);
-      intervallo2 = null;
-    }
-  }, 1000)
-})
+window.addEventListener("blur", () => {
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    popup.innerText = "Torna nella pagina entro 10 secondi";
+    let count = 10;
+    if (intervallo2) return;
+    intervallo2 = setInterval(() => {
+        count--;
+        popup.innerText = `Torna nella pagina entro ${count} secondi`;
+        if (count === 0) {
+            clearInterval(intervallo2);
+            popup.style.display = "none";
+            overlay.style.display = "none";
+            clearInterval(intervallo);
+            controlloRisposta(true);
+            intervallo2 = null;
+        }
+    }, 1000);
+});
 
-overlay.addEventListener('click', function(e) {
-  if (intervallo2) {
-    popup.style.display = 'none';
-    overlay.style.display = 'none';
-    clearInterval(intervallo2)
-    intervallo2 = null;
-  }
-})
+overlay.addEventListener("click", function (e) {
+    if (intervallo2) {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        clearInterval(intervallo2);
+        intervallo2 = null;
+    }
+});
