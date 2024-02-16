@@ -101,29 +101,6 @@ const questions = [
 
 let arrayRisposte = [];
 
-// arrayRisposte[5] = "false"
-// if (arrayRisposte[5]) {
-//     console.log('esiste')
-// } else {
-//     console.log('non esiste')
-// }
-
-// let arrayRisposte = [5]
-// let found = arrayRisposte.indexOf(5)
-// if (found >= 0) {
-//     console.log('trovato')
-// } else {
-//     console.log('non trovato')
-//     arrayRisposte.push(5)
-// }
-
-// if (questions[5].estratto) {
-//     console.log('ripeti')
-// } else {
-//     console.log('non trovato')
-//     questions[5].estratto = true;
-// }
-
 // LET COUNT FUNZIONA DA CONTATORE, CHE EQUIVALE ALLA PRIMA DOMANDA -0-
 let count = 1;
 
@@ -264,6 +241,7 @@ function controlloRisposta(barato) {
     }
 }
 
+//Questa funzione permette di procedere con la domanda successiva, di conseguenza invoca la funzione seguente -2-
 const inizializaBottone = () => {
     const bottone = document.getElementById("buttonProssima");
     bottone.addEventListener("click", (e) => {
@@ -272,7 +250,7 @@ const inizializaBottone = () => {
         controlloRisposta();
     });
 };
-
+//La funzione init avvia le altre funzioni, anche qui un altro controllo per non dare modo all'utente di "spostarsi tra le pagine", se la prima condizione è verificata si ritorna alla prima pagina, se è verificata la seconda(cioè il test risulta effettivamente completato) porterà sempre ai risultati.  -2-
 const init = () => {
     let abilitato = sessionStorage.getItem("abilitato");
     let risultati = sessionStorage.getItem("risultati");
@@ -291,22 +269,24 @@ const init = () => {
     inizializaBottone();
 };
 
-window.addEventListener("load", init); //-1- Attendiamo il caricamento della pagina ed avviamo la funzione init
+window.addEventListener("load", init); //-1- Attendiamo il caricamento della pagina ed avviamo la funzione init -1-
 
+
+//Funzione popup che non ci permette di cambiare finestra, se non ritorniamo nella pagina entro 10 seconndi il test sarà nullo.
 let intervallo2 = null;
 window.addEventListener("blur", () => {
     popup.style.display = "block";
     overlay.style.display = "block";
-    popup.innerText = "Torna nella pagina entro 10 secondi";
-    let count = 10;
+    let counter = 10;
+    popup.innerText = `Torna nella pagina entro ${counter} secondi oppure il test terminerà!`;
     sottofondo.pause();
     nuke.currentTime = 0;
     nuke.play();
     if (intervallo2) return;
     intervallo2 = setInterval(() => {
-        count--;
-        popup.innerText = `Torna nella pagina entro ${count} secondi`;
-        if (count === 0) {
+        counter--;
+        popup.innerText = `Torna nella pagina entro ${counter} secondi oppure il test terminerà!`;
+        if (counter === 0) {
             clearInterval(intervallo2);
             popup.style.display = "none";
             overlay.style.display = "none";
@@ -318,6 +298,7 @@ window.addEventListener("blur", () => {
     }, 1000);
 });
 
+//Funzione popup audio che ripristina la normale funzione del sito
 overlay.addEventListener("click", function (e) {
     if (intervallo2) {
         popup.style.display = "none";

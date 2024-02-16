@@ -33,7 +33,7 @@ const gestioneCheckbox = () => {
     });
 };
 
-// La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox  -2-
+// La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox, inoltre se l'esame risulta gia inziato o terminato non ci sarà modo di tornare indietro e rimanderà l'utente alla pagina risultati  -2-
 const init = () => {
     let risultati = sessionStorage.getItem("risultati");
     if (risultati) {
