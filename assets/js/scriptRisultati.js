@@ -31,6 +31,8 @@ const modificaRisultato = (risultati) => {
         risposteTotali[i].innerText = totale;
     }
     const risposteMinime = Math.floor((60 * totale) / 100);
+    const audio = document.createElement('audio')
+    audio.setAttribute('autoplay', "true")
     if (corrette >= risposteMinime) {
         titoloRisposta.innerHTML = risposte.passato.title;
         testoRisposta.innerText = risposte.passato.message;
@@ -43,10 +45,13 @@ const modificaRisultato = (risultati) => {
 
         // Avvia l'effetto coriandoli
         party.confetti(document.body, confettiSettings);
+        audio.innerHTML = `<source src="assets/audio/passato.mp3" type="audio/mpeg">Il tuo browser non supporta l'elemento audio.`
     } else {
         titoloRisposta.innerHTML = risposte.nonpassato.title;
         testoRisposta.innerText = risposte.nonpassato.message;
+        audio.innerHTML = `<source src="assets/audio/bocciato.mp3" type="audio/mpeg">Il tuo browser non supporta l'elemento audio.`
     }
+    document.body.appendChild(audio);
 };
 
 //Funzione che genera il cerchio dei risultati e modifica le relative label
