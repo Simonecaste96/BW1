@@ -33,7 +33,7 @@ const gestioneCheckbox = () => {
     });
 };
 
-// La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox  -2-
+// La funzione init gestisce tutto quello che abbiamo indicato, in questo caso gestioneCheckbox ed in piu se il test termianato non da modo tornare indietro  -2-
 const init = () => {
     let risultati = sessionStorage.getItem("risultati");
     if (risultati) {
