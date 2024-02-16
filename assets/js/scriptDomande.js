@@ -264,6 +264,7 @@ const init = () => {
     }
     document.getElementById("totaleDomande").innerText = questions.length; // -1- La funzione init prende nel documento l'elemento con l'id totaleDomande e dagli come valore la lunghezza delle domande, dopo di che invoca le funzioni numeroDomanda e pescaDomanda
     document.getElementById("container").style.display = "block";
+    sottofondo.volume = 0.2;
     numeroDomanda();
     pescaDomanda();
     inizializaBottone();

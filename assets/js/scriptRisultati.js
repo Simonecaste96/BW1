@@ -51,6 +51,7 @@ const modificaRisultato = (risultati) => {
         testoRisposta.innerText = risposte.nonpassato.message;
         audio.innerHTML = `<source src="assets/audio/bocciato.mp3" type="audio/mpeg">Il tuo browser non supporta l'elemento audio.`
     }
+    audio.volume = 0.2;
     document.body.appendChild(audio);
 };
 
